@@ -1,0 +1,16 @@
+<ion-view title="{{title}}">
+    <ion-content class="calm">
+        <div class="list">
+            <div class="item list-item" ng-repeat="item in items">
+                <h2>{{item.label}}</h2>
+                <h4>{{item.description}}</h4>
+
+                <div class="item-button-right padding-vertical">
+                    <button class="button button-positive" ng-click="actions.contact(item)">
+                        <i class="ion-android-contact"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

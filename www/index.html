@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html ng-app="przebudzenie">
+<html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="format-detection" content="telephone=no"/>
-    <meta name="msapplication-tap-highlight" content="no"/>
-    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
     <link rel="stylesheet" type="text/css" href="css/app.css"/>
-    <link rel="stylesheet" type="text/css" href="css/ionic.css"/>
+    <link rel="stylesheet" type="text/css" href="lib/css/ionic.min.css"/>
 
-    <title>Przebudzenie</title>
+    <!-- create this file locally because it is not included in commits -->
+    <script type="js/googleMapsKey.js"></script>
+    <script src="cordova.js"></script>
+    <script data-main="js/main" src="lib/js/require.js"></script>
 </head>
-<body ng-controller="PEController">
-{{msg}}
-<ion-pane id="wrapper" class="app">
-    <ion-side-menus>
-        <ion-side-menu>
 
-        </ion-side-menu>
-    </ion-side-menus>
+<body class="ionic-body">
+
+<ion-pane class="sg-wrapper">
+
+    <ion-nav-view scrollEffects animation="slide-left-right">
+
+        <!-- show logo upon entering -->
+        <img src="img/ionic.png" alt="Przebudzenie-logo">
+        <!-- show logo upon entering -->
+
+    </ion-nav-view>
 </ion-pane>
 
 </body>
-
-<script src="lib/ionic/js/ionic.bundle.min.js"></script>
-<script src="lib/ionic/js/angular/angular-resource.min.js"></script>
-<script src="lib/ionic/js/angular/angular-animate.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-
-<script type="text/javascript" src="cordova.js"></script>
 
 </html>
