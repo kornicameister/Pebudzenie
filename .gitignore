@@ -1,9 +1,8 @@
-# Log Files
-*.log
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
 
-# IDEA
-.idea/
-
-# ionic
+node_modules/
 platforms/
-plugins/**/
+plugins/
+.idea/
+*.iml
