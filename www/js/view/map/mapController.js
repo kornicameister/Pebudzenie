@@ -1,96 +1,110 @@
 define(
-    [],
-    function mapController() {
+    [
+        'lodash',
+        'constants/mapEvents',
+        'view/map/controls/centerMe'
+    ],
+    function mapController(lodash, MAP_EVENTS) {
+        function CenterMeMarker(pos) {
+            this.coords = pos;
+        }
+
+        CenterMeMarker.prototype = {
+            id     : 'MY_POS',
+            options: {
+                optimized: true
+            }
+        };
+
+        /**
+         * Utility function that logs current position coordinates to the log debug output
+         * @param pos
+         */
+        function logCoordinates(pos) {
+            this.debug('logCoordinates >> [latitude=' + pos.coords.latitude + ';longitude=' + pos.coords.longitude + ']');
+        }
 
         return function ($scope,
                          $log,
                          $ionicLoading,
                          $ionicPopup,
-                         geolocation,
+                         uiGmapGoogleMapApi,
                          currentPosition // from resolve param in the state definition
         ) {
 
-            var loggers = {
-                    logCoordinates: function (pos) {
-                        $log.debug('logCoordinates >> [latitude=' + pos.coords.latitude + ';longitude=' + pos.coords.longitude + ']');
-                    }
-                },
-                helpers = {
-                    setLocation         : function setPosition(pos) {
-                        loggers.logCoordinates(pos);
-                        $scope.map.control.refresh({
-                            latitude : pos.coords.latitude,
-                            longitude: pos.coords.longitude
-                        });
-                        if ($scope.loading) {
-                            $scope.loading.hide();
-                        }
-                    },
-                    showGetLocationError: function showError(error) {
-                        $log.error(error);
-                        $ionicPopup.alert({
-                            title   : 'Błąd',
-                            template: error
-                        });
-                    }
+            logCoordinates = _.bind(logCoordinates, $log);
+
+            var listeners = {};
+
+            listeners[MAP_EVENTS.CENTER_ME] = function (event, pos) {
+                $log.debug(MAP_EVENTS.CENTER_ME + ' received...');
+                if (!pos) {
+                    return;
+                }
+                logCoordinates(pos);
+
+                pos = {
+                    latitude : pos.coords.latitude,
+                    longitude: pos.coords.longitude
                 };
+
+                $scope.map.control.refresh(pos);
+                $scope.myPosMarker = new CenterMeMarker(pos);
+
+                event.stopPropagation();
+            };
 
             $scope.title = 'Map';
-
+            $scope.loading = $ionicLoading.show({
+                content     : 'Ładowanie mapy, proszę czekać...',
+                scope       : $scope,
+                showBackdrop: false
+            });
             /**
-             * Initialize the map and set in the scope
+             * Set of markers to be used by directive that groups them
+             * @type {Array}
              */
-            $scope.map = (function () {
+            $scope.markers = [];
 
-                /**
-                 * @see http://angular-ui.github.io/angular-google-maps/#!/api
-                 */
-                var map = {
-                    center   : {
-                        latitude : 45,
-                        longitude: -73
-                    },
-                    draggable: true,
-                    options  : {
-                        scrollwheel: false
-                    },
-                    zoom     : 8,
-                    control  : {}
-                };
+            // set up listeners for map controls
+            _.forIn(listeners, function (listener, key) {
+                $scope.$on(key, listener);
+            });
 
-                if (currentPosition) {
-                    $log.debug('Retrieved actual position from the state resolve');
+            uiGmapGoogleMapApi.then(function () {
+                $scope.map = (function () {
 
-                    map.center.latitude = currentPosition.coords.latitude;
-                    map.center.longitude = currentPosition.coords.longitude;
+                    /**
+                     * @see http://angular-ui.github.io/angular-google-maps/#!/api
+                     */
+                    var map = {
+                        center   : {
+                            latitude : 45,
+                            longitude: -73
+                        },
+                        draggable: true,
+                        options  : {
+                            scrollwheel: false
+                        },
+                        zoom     : 16,
+                        control  : {}
+                    };
 
-                    loggers.logCoordinates(currentPosition);
-                }
+                    if (currentPosition) {
+                        $log.debug('Retrieved actual position from the state resolve');
 
-                return map;
-            })();
+                        map.center.latitude = currentPosition.coords.latitude;
+                        map.center.longitude = currentPosition.coords.longitude;
 
-            $scope.controls = {
-                CenterOnMe: (function () {
-                    var parentScope = $scope;
-                    return function ($scope) {
-
-                        $scope.execute = function(){
-                            if (!parentScope.map) {
-                                return;
-                            }
-
-                            parentScope.loading = $ionicLoading.show({
-                                content     : 'Getting current location...',
-                                scope       : $scope,
-                                showBackdrop: false
-                            });
-
-                            geolocation.getLocation().then(helpers.setLocation, helpers.showGetLocationError);
-                        }
+                        logCoordinates(currentPosition);
                     }
-                }())
-            };
+
+                    return map;
+                })();
+
+                $scope.loading.hide();
+                delete $scope.loading;
+            });
 
         };
     }

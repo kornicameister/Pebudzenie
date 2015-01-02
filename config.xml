@@ -2,9 +2,9 @@
 <widget xmlns:cdv="http://cordova.apache.org/ns/1.0" id="io.cordova.przebudzenie" version="0.0.1" xmlns="http://www.w3.org/ns/widgets">
   <name>Przebudzenie</name>
   <description>&#xD;
-        Projekt grupowy Przebudzenie&#xD;
+    Projekt grupowy Przebudzenie
     </description>
-  <author email="dev@cordova.apache.org" href="http://cordova.io">&#xD;
+  <author email="dev@cordova.apache.org" href="http://cordova.io">
         PG&#xD;
     </author>
   <content src="index.html"/>
