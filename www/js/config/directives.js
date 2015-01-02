@@ -27,7 +27,8 @@ define(
         // directives
     ],
     function configDirectives(app) {
-        var offset = 1,
+        var ready = false,
+            offset = 1,
             directives = (function getDirectives(arg) {
                 var local = [],
                     it = offset;
@@ -43,11 +44,16 @@ define(
                         _register(directive[i]);
                     }
                 } else if (directive.name && directive.definition) {
+                    console.log('directives :: registering directive for name=' + directive.name);
                     app.directive(directive.name, directive.definition);
                 }
             },
             _configure = function localConfigure() {
+                if (ready) {
+                    return;
+                }
                 _register(directives);
+                ready = true;
             };
         return {
             configure: _configure

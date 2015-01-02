@@ -4,8 +4,8 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": { }
+        "files": {}
     },
-    "installed_plugins": { },
+    "installed_plugins": {},
     "dependent_plugins": {}
 }

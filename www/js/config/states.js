@@ -11,7 +11,8 @@ define(
     function configStates(app) {
         'use strict';
 
-        var otherwiseRoute = '/sg/home',
+        var ready = false,
+            otherwiseRoute = '/sg/home',
             offset = 1,
             rawArgs = arguments,
             _register = function localRegister($urlRouterProvider, states) {
@@ -32,6 +33,9 @@ define(
 
         return {
             configure: function configure() {
+                if(ready){
+                    return;
+                }
                 app.config(function statesConfigure($stateProvider, $urlRouterProvider) {
                     console.log('states >> configuration starting...');
                     try {
@@ -50,7 +54,8 @@ define(
                         console.error(e.stack || e.message || e)
                     }
                     console.log('states << configuration finished...');
-                })
+                });
+                ready = true;
             }
         };
     }

@@ -2,19 +2,21 @@ define(
     [
         'angular',
         // other dependencies
+        'angularGeolocation',
         'uiRouter',
-        'ionicAngular'
+        'ionicAngular',
+        'angularGoogleMaps'
     ],
     function (angular) {
 
         'use strict';
 
-        var app = angular.module('przebudzenie', [
+        return angular.module('przebudzenie', [
             'ionic',
-            'ui.router'
-        ]);
-
-        app.run(function ($ionicPlatform, $log) {
+            'ui.router',
+            'geolocation',
+            'uiGmapgoogle-maps'
+        ]).run(function ($ionicPlatform, $log) {
 
             $ionicPlatform.ready(function () {
                 if (window.StatusBar) {
@@ -23,8 +25,15 @@ define(
                 $log.debug('ionicPlatform.ready(...) called');
             });
 
+        }).config(function (uiGmapGoogleMapApiProvider) {
+            uiGmapGoogleMapApiProvider.configure({
+                key      : GOOGLE_MAP_API_KEY,
+                v        : '3.17',
+                libraries: 'weather,geometry,visualization',
+                sensor   : true,
+                language : 'pl'
+            });
         });
 
-        return app;
     }
 );
