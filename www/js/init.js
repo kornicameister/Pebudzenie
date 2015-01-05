@@ -1,16 +1,16 @@
 define(
     [
-        'ionic',
-        'angular',
         'config/app',
-        // configuration
         'config/states',
-        'config/directives'
+        'config/directives',
+        // other deps
+        'ionic',
+        'text',
+        'lodash'
     ],
-    function (ionic,
-              angular,
-              app,
-              states, directives) {
+    function (app,
+              states,
+              directives) {
         'use strict';
 
         console.log('init.js >> configuring to init application');

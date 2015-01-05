@@ -2,6 +2,8 @@ define(
     [],
     function aboutController() {
         return function ($scope) {
+
+            $scope.title = 'O aplikacji';
             $scope.items = [
                 {
                     label      : 'Tomasz Trębski',

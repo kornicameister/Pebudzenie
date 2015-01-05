@@ -2,16 +2,16 @@ define(
     [
         'angular',
         // other dependencies
-        'angularGeolocation',
         'uiRouter',
         'ionicAngular',
+        'angularGeolocation',
         'angularGoogleMaps'
     ],
-    function (angular) {
+    function () {
 
         'use strict';
 
-        return angular.module('przebudzenie', [
+        return angular.module('pebudzenie', [
             'ionic',
             'ui.router',
             'geolocation',
@@ -19,7 +19,10 @@ define(
         ]).run(function ($ionicPlatform, $log) {
 
             $ionicPlatform.ready(function () {
+                // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+                // for form inputs)
                 if (window.StatusBar) {
+                    // org.apache.cordova.statusbar required
                     StatusBar.styleDefault();
                 }
                 $log.debug('ionicPlatform.ready(...) called');
@@ -33,7 +36,7 @@ define(
                 sensor   : true,
                 language : 'pl'
             });
-        });
+        }).constant('appName', 'Pebudzenie')
 
     }
 );

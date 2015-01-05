@@ -1,12 +1,13 @@
-<ion-view title="{{title}}">
+<ion-view cache-view="false" view-title="{{title}}">
 
-    <ion-content scroll="false" ng-if="map">
+    <ion-content scroll="false" ng-if="map" class="padding calm">
 
         <ui-gmap-google-map
                 id="map-canvas"
                 center="map.center"
                 zoom="map.zoom"
                 draggable="map.draggable"
+                pan="map.pan"
                 control="map.control"
                 options="map.options">
 
@@ -22,7 +23,13 @@
                             idkey="myPosMarker.id">
             </ui-gmap-marker>
 
-            <ui-gmap-markers models="markers" coords="'self'" icon="'icon'"></ui-gmap-markers>
+            <ui-gmap-markers
+                    ng-if="markers.length"
+                    ng-repeat="markerGroup in markers"
+                    models="markerGroup"
+                    coords="'coords'"
+                    icon="'icon'">
+            </ui-gmap-markers>
 
         </ui-gmap-google-map>
 

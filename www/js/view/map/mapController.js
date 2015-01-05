@@ -1,10 +1,13 @@
 define(
     [
-        'lodash',
         'constants/mapEvents',
-        'view/map/controls/centerMe'
+        'lodash',
+        // angular injections
+        'services/map/markers',
+        'view/map/controls/centerMe'    // control for the centerMe action
     ],
-    function mapController(lodash, MAP_EVENTS) {
+    function mapController(MAP_EVENTS) {
+
         function CenterMeMarker(pos) {
             this.coords = pos;
         }
@@ -29,12 +32,21 @@ define(
                          $ionicLoading,
                          $ionicPopup,
                          uiGmapGoogleMapApi,
-                         currentPosition // from resolve param in the state definition
+                         mapMarkersService,     // mapMarkers services
+                         markers,               // from resolve param in the state definition
+                         currentPosition        // from resolve param in the state definition
         ) {
+            $log.debug('mapController >> ' + this);
 
             logCoordinates = _.bind(logCoordinates, $log);
 
-            var listeners = {};
+            var listeners = {},
+                eventHandlers = {
+                    'click': function eventHandlerOnClick(map, event, args) {
+                        console.log(event);
+                        console.log(args);
+                    }
+                };
 
             listeners[MAP_EVENTS.CENTER_ME] = function (event, pos) {
                 $log.debug(MAP_EVENTS.CENTER_ME + ' received...');
@@ -54,17 +66,20 @@ define(
                 event.stopPropagation();
             };
 
-            $scope.title = 'Map';
-            $scope.loading = $ionicLoading.show({
+            $scope.title = 'Mapa';
+            $ionicLoading.show({
                 content     : 'Ładowanie mapy, proszę czekać...',
                 scope       : $scope,
                 showBackdrop: false
             });
             /**
-             * Set of markers to be used by directive that groups them
+             * Set of markers to be used by directive that groups them.
+             * <b>Note</b> that this property of the scope
+             * holds {@link Array} as their elements therefore
+             * it is available to group markers
              * @type {Array}
              */
-            $scope.markers = [];
+            $scope.markers = markers || [];
 
             // set up listeners for map controls
             _.forIn(listeners, function (listener, key) {
@@ -72,6 +87,7 @@ define(
             });
 
             uiGmapGoogleMapApi.then(function () {
+                console.log('Loading map');
                 $scope.map = (function () {
 
                     /**
@@ -86,8 +102,12 @@ define(
                         options  : {
                             scrollwheel: false
                         },
+                        pan    : true,
                         zoom     : 16,
-                        control  : {}
+                        control: {},
+                        events : {
+                            'click': eventHandlers.click
+                        }
                     };
 
                     if (currentPosition) {
@@ -97,13 +117,14 @@ define(
                         map.center.longitude = currentPosition.coords.longitude;
 
                         logCoordinates(currentPosition);
+                    } else {
+                        $log.warn('No active position presented');
                     }
 
                     return map;
                 })();
 
-                $scope.loading.hide();
-                delete $scope.loading;
+                $ionicLoading.hide();
             });
 
         };

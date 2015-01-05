@@ -6,26 +6,30 @@ define(
         'view/map/mapController',
         // angular injections
         'angularGeolocation',
-        'services/activeViewSettingsService'
+        'services/map/markers',
+        'services/activeViewSettingsService'    // activeView settings service
     ],
     function (mapController) {
         return {
             name      : 'sg.map',
             definition: {
                 url    : '/map',
-                title  : 'Mapa',
+                resolve: {
+                    'markers'        : function (mapMarkersService) {
+                        return mapMarkersService.read();
+                    },
+                    'currentPosition': function (geolocation) {
+                        return geolocation.getLocation();
+                    }
+                },
                 views  : {
-                    'map-tab': {
+                    'mainContent': {
                         controller : mapController,
-                        templateUrl: 'js/view/map/map.html',
-                        resolve    : {
-                            'currentPosition': function (geolocation) {
-                                return geolocation.getLocation();
-                            }
-                        }
+                        templateUrl: 'js/view/map/map.html'
                     }
                 },
                 onEnter: function (activeViewSettingsService) {
+                    console.log('Entering the view map');
                     activeViewSettingsService.setSettings([
                         {
                             label: 'CenterMe',

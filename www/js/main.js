@@ -13,8 +13,8 @@
             angularGoogleMaps: '../lib/bc/angular-google-maps/dist/angular-google-maps',
             angularGeolocation: '../lib/bc/angularjs-geolocation/dist/angularjs-geolocation.min',
             uiRouter          : '../lib/bc/angular-ui-router/release/angular-ui-router.min',
-            ionic             : '../lib/bc/ionic/release/js/ionic.min',
-            ionicAngular      : '../lib/bc/ionic/release/js/ionic-angular.min',
+            ionic       : '../lib/bc/ionic/js/ionic.min',
+            ionicAngular: '../lib/bc/ionic/js/ionic-angular.min',
             text              : '../lib/js/text',
             lodash            : '../lib/bc/lodash/dist/lodash.min'
         },

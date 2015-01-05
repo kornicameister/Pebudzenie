@@ -2,7 +2,7 @@ define(
     [
         'config/app',
         // states
-        'states/abstract',
+        '../states/main',
         'states/home',
         'states/map',
         'states/about'

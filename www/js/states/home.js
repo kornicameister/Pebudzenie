@@ -10,9 +10,8 @@ define(
             name      : 'sg.home',
             definition: {
                 url  : '/home',
-                title: 'Przebudzenie',
                 views: {
-                    'home-tab': {
+                    'mainContent': {
                         controller : homeController,
                         templateUrl: 'js/view/home/home.html'
                     }
