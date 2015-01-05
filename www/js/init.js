@@ -3,6 +3,8 @@ define(
         'config/app',
         'config/states',
         'config/directives',
+        // services ro be loaded
+        'services/activeViewMenu',
         // other deps
         'ionic',
         'text',
@@ -17,6 +19,10 @@ define(
 
         states.configure();
         directives.configure();
+
+        app.run(function (activeViewMenu) {
+            activeViewMenu.configure();
+        });
 
         document.addEventListener("deviceready", function () {
             setTimeout(function () {

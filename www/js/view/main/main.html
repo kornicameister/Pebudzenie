@@ -34,6 +34,7 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
+
                 <ion-item ui-sref="sg.home" nav-clear menu-close>
                     <i class="ion-home"></i>Strona główna
                 </ion-item>
@@ -42,6 +43,13 @@
                 </ion-item>
                 <ion-item ui-sref="sg.about" nav-clear menu-close>
                     <i class="ion-information"></i>O aplikacji
+                </ion-item>
+
+                <div class="item item-divider" ng-if="activeView.menus.length">
+                    Opcje
+                </div>
+                <ion-item ng-repeat="menu in activeView.menus" ng-click="menu.onClick($event)" nav-clear menu-close>
+                    <i ng-class="menu.class"></i>{{menu.label}}
                 </ion-item>
             </ion-list>
         </ion-content>

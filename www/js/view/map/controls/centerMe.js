@@ -12,9 +12,7 @@ define(
             var helpers = {
                 setLocation         : function setPosition(pos) {
                     $scope.$emit(MAP_EVENTS.CENTER_ME, pos);
-                    if ($scope.loading) {
-                        $scope.loading.hide();
-                    }
+                    $ionicLoading.hide();
                 },
                 showGetLocationError: function showError(error) {
                     $ionicPopup.alert({
@@ -26,12 +24,11 @@ define(
 
             $scope.text = 'Moja lokalizacja';
             $scope.execute = function () {
-                $scope.loading = $ionicLoading.show({
+                $ionicLoading.show({
                     content     : 'Pobieram lokalizacje...',
                     scope       : $scope,
                     showBackdrop: false
                 });
-
                 geolocation.getLocation().then(helpers.setLocation, helpers.showGetLocationError);
             }
 

@@ -7,7 +7,7 @@ define(
         // angular injections
         'angularGeolocation',
         'services/map/markers',
-        'services/activeViewSettingsService'    // activeView settings service
+        '../services/activeViewMenu'    // activeView settings service
     ],
     function (mapController) {
         return {
@@ -27,19 +27,6 @@ define(
                         controller : mapController,
                         templateUrl: 'js/view/map/map.html'
                     }
-                },
-                onEnter: function (activeViewSettingsService) {
-                    console.log('Entering the view map');
-                    activeViewSettingsService.setSettings([
-                        {
-                            label: 'CenterMe',
-                            name : 'sg.map-centerMe'
-                        },
-                        {
-                            label: 'Settings',
-                            name : 'sg.map-settings'
-                        }
-                    ]);
                 }
             }
         }
