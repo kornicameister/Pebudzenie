@@ -6,8 +6,11 @@ define(
         'config/app'
     ],
     function activeViewMenu(app) {
-        app.factory('activeViewMenu', function ($log, $rootScope, $state) {
+        app.factory('activeViewMenu', function ($log, $rootScope, $state, $ionicSideMenuDelegate) {
             $log.debug('activeViewMenu service loading');
+
+            var isConfigured = false,
+                alwaysCloseMenu = false;
 
             function setInRootScope(settings) {
                 if (!$rootScope.activeView) {
@@ -45,6 +48,7 @@ define(
                             } else {
                                 $rootScope.$broadcast(stateName + '$' + menu.key)
                             }
+                            $ionicSideMenuDelegate.toggleLeft(alwaysCloseMenu);
                             return false;
                         }
                     };
@@ -65,8 +69,6 @@ define(
                 $log.debug(toState.name + ' has declared submenus');
                 setInRootScope(parseFromStateChangeSuccess(toState.name, toState.menus || []));
             });
-
-            var isConfigured = false;
 
             return {
                 configure: function () {

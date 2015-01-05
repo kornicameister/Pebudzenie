@@ -4,9 +4,10 @@
 define(
     [
         'services/activeViewMenu',
-        'view/home/homeController'
+        'view/home/homeController',
+        'view/crud/create/newItemController'
     ],
-    function (homeController) {
+    function (homeController, newItemController) {
         return [
             {
                 name      : 'sg.home',
@@ -24,7 +25,9 @@ define(
                         'mainContent': {
                             controller : homeController,
                             templateUrl: 'js/view/home/home.html'
-                        }
+                        },
+                        // leave it empty for child states to fill in
+                        'homeContent': {}
                     }
                 }
             },
@@ -33,8 +36,9 @@ define(
                 definition: {
                     url  : 'newItem',
                     views: {
-                        'mainContent': {
-                            template: 'test'
+                        'homeContent@sg.home': {
+                            controller : newItemController,
+                            templateUrl: 'js/view/crud/create/newItem.html'
                         }
                     }
                 }
