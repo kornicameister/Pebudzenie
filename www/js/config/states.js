@@ -2,10 +2,12 @@ define(
     [
         'config/app',
         // states
-        '../states/main',
+        'states/main',
         'states/home',
         'states/map',
-        'states/about'
+        'states/about',
+        'states/crud/new',
+        'states/crud/new/newPlaceState'
         // states
     ],
     function configStates(app) {

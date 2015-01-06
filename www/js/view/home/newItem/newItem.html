@@ -1,0 +1,11 @@
+<div>
+    <div class="item item-input item-select">
+        <span class="input-label">Element</span>
+        <!-- currently not working -->
+        <select title="Element"
+                ng-options="item.view as item.label for item in itemTypes"
+                ng-model="selectedItem"
+                ng-required>
+        </select>
+    </div>
+</div>

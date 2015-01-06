@@ -3,9 +3,9 @@
  */
 define(
     [
-        'services/activeViewMenu',
         'view/home/homeController',
-        'view/crud/create/newItemController'
+        'view/home/newItem/newItemController',
+        'services/activeViewMenu'
     ],
     function (homeController, newItemController) {
         return [
@@ -38,7 +38,7 @@ define(
                     views: {
                         'homeContent@sg.home': {
                             controller : newItemController,
-                            templateUrl: 'js/view/crud/create/newItem.html'
+                            templateUrl: 'js/view/home/newItem/newItem.html'
                         }
                     }
                 }
