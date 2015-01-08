@@ -11,7 +11,7 @@ define(
                 {
                     label      : 'Sebastian Jakowski',
                     description: 'Munja Warrior',
-                    email      : 'sjak91@gmail.com'
+                    email      : 'sjak90@gmail.com'
                 }
             ];
 
