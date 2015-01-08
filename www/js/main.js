@@ -1,29 +1,33 @@
 (function () {
 
     console.log('main.js >> initializing requireJs configuration');
-
     var clientId = GOOGLE_MAP_API_KEY;
+    console.log('GOOGLE_MAP_API_KEY = ' + clientId);
 
     requirejs.config({
         paths   : {
-            googleMaps     : 'https://maps.googleapis.com/maps/api/js?key=' + clientId + '&v=3.18&callback=initialize',
-            angular        : '../lib/js/angular/angular.min',
-            angularAnimate : '../lib/js/angular/angular-animate.min',
-            angularSanitize: '../lib/js/angular/angular-sanitize.min',
-            angularResource: '../lib/js/angular/angular-resource.min',
-            uiRouter       : '../lib/js/angular-ui/angular-ui-router.min',
-            ionic          : '../lib/js/ionic.min',
-            ionicAngular   : '../lib/js/ionic-angular.min',
-            text           : '../lib/js/text'
+            angular           : '../lib/bc/angular/angular',
+            angularAnimate    : '../lib/bc/angular-animate/angular-animate.min',
+            angularSanitize   : '../lib/bc/angular-sanitize/angular-sanitize.min',
+            angularResource   : '../lib/bc/angular-resource/angular-resource.min',
+            angularGoogleMaps: '../lib/bc/angular-google-maps/dist/angular-google-maps',
+            angularGeolocation: '../lib/bc/angularjs-geolocation/dist/angularjs-geolocation.min',
+            uiRouter          : '../lib/bc/angular-ui-router/release/angular-ui-router.min',
+            ionic       : '../lib/bc/ionic/js/ionic.min',
+            ionicAngular: '../lib/bc/ionic/js/ionic-angular.min',
+            text              : '../lib/js/text',
+            lodash            : '../lib/bc/lodash/dist/lodash.min'
         },
         shim    : {
-            angular        : {exports: 'angular'},
-            angularAnimate : {deps: ['angular']},
-            angularSanitize: {deps: ['angular']},
-            angularResource: {deps: ['angular']},
-            uiRouter       : {deps: ['angular']},
-            ionic          : {deps: ['angular'], exports: 'ionic'},
-            ionicAngular   : {deps: ['angular', 'ionic', 'uiRouter', 'angularAnimate', 'angularSanitize', 'angularResource']}
+            angular           : {exports: 'angular'},
+            angularAnimate    : {deps: ['angular']},
+            angularGeolocation: {deps: ['angular']},
+            angularSanitize   : {deps: ['angular']},
+            angularResource   : {deps: ['angular']},
+            uiRouter          : {deps: ['angular']},
+            angularGoogleMaps : {deps: ['angular', 'lodash']},
+            ionic             : {deps: ['angular'], exports: 'ionic'},
+            ionicAngular      : {deps: ['angular', 'ionic', 'uiRouter', 'angularAnimate', 'angularSanitize', 'angularResource']}
         },
         priority: [
             'angular',

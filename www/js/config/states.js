@@ -2,16 +2,19 @@ define(
     [
         'config/app',
         // states
-        'states/abstract',
+        'states/main',
         'states/home',
         'states/map',
-        'states/about'
+        'states/about',
+        'states/crud/new',
+        'states/crud/new/newPlaceState'
         // states
     ],
     function configStates(app) {
         'use strict';
 
-        var otherwiseRoute = '/sg/home',
+        var ready = false,
+            otherwiseRoute = '/sg/home',
             offset = 1,
             rawArgs = arguments,
             _register = function localRegister($urlRouterProvider, states) {
@@ -32,6 +35,9 @@ define(
 
         return {
             configure: function configure() {
+                if(ready){
+                    return;
+                }
                 app.config(function statesConfigure($stateProvider, $urlRouterProvider) {
                     console.log('states >> configuration starting...');
                     try {
@@ -50,7 +56,8 @@ define(
                         console.error(e.stack || e.message || e)
                     }
                     console.log('states << configuration finished...');
-                })
+                });
+                ready = true;
             }
         };
     }

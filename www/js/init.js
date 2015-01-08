@@ -1,22 +1,28 @@
 define(
     [
-        'ionic',
-        'angular',
         'config/app',
-        // configuration
         'config/states',
-        'config/directives'
+        'config/directives',
+        // services ro be loaded
+        'services/activeViewMenu',
+        // other deps
+        'ionic',
+        'text',
+        'lodash'
     ],
-    function (ionic,
-              angular,
-              app,
-              states, directives) {
+    function (app,
+              states,
+              directives) {
         'use strict';
 
         console.log('init.js >> configuring to init application');
 
         states.configure();
         directives.configure();
+
+        app.run(function (activeViewMenu) {
+            activeViewMenu.configure();
+        });
 
         document.addEventListener("deviceready", function () {
             setTimeout(function () {

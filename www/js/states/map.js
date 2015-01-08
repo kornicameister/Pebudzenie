@@ -3,16 +3,27 @@
  */
 define(
     [
-        'view/map/mapController'
+        'view/map/mapController',
+        // angular injections
+        'angularGeolocation',
+        'services/map/markers',
+        '../services/activeViewMenu'    // activeView settings service
     ],
     function (mapController) {
         return {
             name      : 'sg.map',
             definition: {
-                url  : '/map',
-                title: 'Mapa',
-                views: {
-                    'map-tab': {
+                url    : '/map',
+                resolve: {
+                    'markers'        : function (mapMarkersService) {
+                        return mapMarkersService.read();
+                    },
+                    'currentPosition': function (geolocation) {
+                        return geolocation.getLocation();
+                    }
+                },
+                views  : {
+                    'mainContent': {
                         controller : mapController,
                         templateUrl: 'js/view/map/map.html'
                     }

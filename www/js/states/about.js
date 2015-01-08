@@ -10,9 +10,8 @@ define(
             name      : 'sg.about',
             definition: {
                 url  : '/about',
-                title: 'O aplikacji',
                 views: {
-                    'about-tab': {
+                    'mainContent': {
                         controller : aboutController,
                         templateUrl: 'js/view/about/about-tab.html'
                     }
