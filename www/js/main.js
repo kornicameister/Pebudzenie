@@ -1,8 +1,8 @@
 (function () {
 
     console.log('main.js >> initializing requireJs configuration');
-    var clientId = GOOGLE_MAP_API_KEY;
-    console.log('GOOGLE_MAP_API_KEY = ' + clientId);
+   // var clientId = GOOGLE_MAP_API_KEY;
+    //console.log('GOOGLE_MAP_API_KEY = ' + clientId);
 
     requirejs.config({
         paths   : {

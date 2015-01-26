@@ -2,7 +2,7 @@ define(
     [],
     function aboutController() {
         return function ($scope) {
-
+            console.log("About Controller");
             $scope.title = 'O aplikacji';
             $scope.items = [
                 {

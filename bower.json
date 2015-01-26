@@ -3,7 +3,8 @@
    "version": "0.0.0",
    "homepage": "https://github.com/kornicameister/Pebudzenie",
    "authors": [
-      "Tomasz Trębski <kornicameister@gmail.com>"
+      "Tomasz Trębski <kornicameister@gmail.com>",
+      "Sebastian Jakowski <sjak90@gmail.com>"
    ],
    "description": "Simple project for IT subject",
    "main": "www/js/main.js",
