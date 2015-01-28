@@ -1,0 +1,11 @@
+<ion-view cache-view="false" ng-controller="PlacesController" view-title="{{title}}">
+	<ion-content class="padding calm">
+		<div class="list" ng-repeat="place in places">
+			<div class="item item-thumbnail-left item-text-wrap">
+				<img ng-src="{{place.url}}">
+				<h2>{{place.name}}</h2>
+				<p>{{place.description}}</p>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
