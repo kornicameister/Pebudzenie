@@ -3,9 +3,10 @@
  */
 define(
     [
-        'config/app'
+        'config/app',
+        'mock/mockProvider'
     ],
-    function mapMarkersService(app) {
+    function mapMarkersService(app, mockProvider) {
 
         // $q will be likely removed later
         app.factory('mapMarkersService', function ($log, $q) {
@@ -13,7 +14,7 @@ define(
 
             // TMP solution before adding some kind of external API to handle
             // persisting of markers
-            var mockedMarkers = [];
+            var mockedMarkers = mockProvider.places;
 
             return {
                 /**
@@ -22,17 +23,18 @@ define(
                  */
                 read: function getMarkers() {
                     $log.debug('Reading all available markers');
-                    var deferred = $q.defer();
-                    setTimeout(function () {
-                        deferred.resolve(mockedMarkers)
-                    }, 1000);
-                    return deferred.promise;
+                    // var deferred = $q.defer();
+                    // setTimeout(function () {
+                    //     deferred.resolve(mockedMarkers)
+                    // }, 1000);
+                    return mockedMarkers;
                 },
                 /**
                  * Saves
                  * @param markers [Object|Array] of markers to be persisted
                  */
                 save: function (markers) {
+                    $log.debug('Saving all available markers');
                     if (!_.isArray(markers)) {
                         markers = [markers];
                     }

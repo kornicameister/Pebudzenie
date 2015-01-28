@@ -8,25 +8,6 @@ define(
     ],
     function mapController(MAP_EVENTS) {
 
-        function CenterMeMarker(pos) {
-            this.coords = pos;
-        }
-
-        CenterMeMarker.prototype = {
-            id     : 'MY_POS',
-            options: {
-                optimized: true
-            }
-        };
-
-        /**
-         * Utility function that logs current position coordinates to the log debug output
-         * @param pos
-         */
-        function logCoordinates(pos) {
-            this.debug('logCoordinates >> [latitude=' + pos.coords.latitude + ';longitude=' + pos.coords.longitude + ']');
-        }
-
         return function ($scope,
                          $log,
                          $ionicLoading,
@@ -37,6 +18,11 @@ define(
                          currentPosition        // from resolve param in the state definition
         ) {
             $log.debug('mapController >> ' + this);
+            $scope.title = 'Mapa';
+
+            $ionicLoading.show({
+                template: "Ladowanie map..."
+            });
 
             logCoordinates = _.bind(logCoordinates, $log);
 
@@ -61,17 +47,13 @@ define(
                 };
 
                 $scope.map.control.refresh(pos);
-                $scope.myPosMarker = new CenterMeMarker(pos);
+                $scope.myPosMarker = pos;
+     
 
                 event.stopPropagation();
             };
 
-            $scope.title = 'Mapa';
-            $ionicLoading.show({
-                content     : 'Ładowanie mapy, proszę czekać...',
-                scope       : $scope,
-                showBackdrop: false
-            });
+
             /**
              * Set of markers to be used by directive that groups them.
              * <b>Note</b> that this property of the scope
@@ -80,7 +62,7 @@ define(
              * @type {Array}
              */
             $scope.markers = markers || [];
-
+            $log.debug("All available markers: " +markers.length);
             // set up listeners for map controls
             _.forIn(listeners, function (listener, key) {
                 $scope.$on(key, listener);
@@ -103,7 +85,7 @@ define(
                             scrollwheel: false
                         },
                         pan    : true,
-                        zoom     : 16,
+                        zoom     : 10,
                         control: {},
                         events : {
                             'click': eventHandlers.click
@@ -115,6 +97,7 @@ define(
 
                         map.center.latitude = currentPosition.coords.latitude;
                         map.center.longitude = currentPosition.coords.longitude;
+                        $scope.myPosMarker = currentPosition.coords;
 
                         logCoordinates(currentPosition);
                     } else {
@@ -124,9 +107,34 @@ define(
                     return map;
                 })();
 
-                $ionicLoading.hide();
+               $ionicLoading.hide();
             });
-
+    
+            $scope.show = function(id){
+                $log.debug("show");
+                markers[id].show = true;
+            };
         };
+
+         function CenterMeMarker(pos) {
+            this.coords = pos;
+        }
+
+        CenterMeMarker.prototype = {
+            id     : 'MY_POS',
+            options: {
+                optimized: true
+            }
+        };
+
+        /**
+         * Utility function that logs current position coordinates to the log debug output
+         * @param pos
+         */
+        function logCoordinates(pos) {
+            this.debug('logCoordinates >> [latitude=' + pos.coords.latitude + ';longitude=' + pos.coords.longitude + ']');
+        }
+
+
     }
 );

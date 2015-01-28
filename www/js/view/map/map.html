@@ -16,20 +16,24 @@
                     position="top-right"
                     controller="MapCenterMeController"></ui-gmap-map-control>
 
-            <ui-gmap-marker ng-if="myPosMarker"
-                            coords="myPosMarker.coords"
+            <ui-gmap-marker coords="myPosMarker"
                             options="myPosMarker.options"
-                            events="myPosMarker.events"
-                            idkey="myPosMarker.id">
+                            idkey="-1"
+                            icon="'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'">
+                           <ui-gmap-window options="windowOptions" isIconVisibleOnClick="true">
+                                <p>Twoja Pozycja</p>
+                             </ui-gmap-window>
             </ui-gmap-marker>
 
-            <ui-gmap-markers
-                    ng-if="markers.length"
-                    ng-repeat="markerGroup in markers"
-                    models="markerGroup"
-                    coords="'coords'"
-                    icon="'icon'">
-            </ui-gmap-markers>
+            <ui-gmap-marker
+                    ng-repeat="mrk in markers"
+                    idkey="mrk.id"
+                    coords="mrk"
+                    ng-click="show(0)">
+                     <ui-gmap-window options="windowOptions" show="mrk.show" >
+                        <p>{{mrk.id}}</p>
+                    </ui-gmap-window>
+            </ui-gmap-marker>
 
         </ui-gmap-google-map>
 

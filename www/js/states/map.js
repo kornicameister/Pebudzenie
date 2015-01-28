@@ -23,7 +23,7 @@ define(
                     }
                 },
                 views  : {
-                    'mainContent': {
+                    mainContent: {
                         controller : mapController,
                         templateUrl: 'js/view/map/map.html'
                     }
