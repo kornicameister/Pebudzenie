@@ -25,15 +25,14 @@
                              </ui-gmap-window>
             </ui-gmap-marker>
 
-            <ui-gmap-marker
-                    ng-repeat="mrk in markers"
-                    idkey="mrk.id"
-                    coords="mrk"
-                    ng-click="show(mrk)">
-                     <ui-gmap-window options="windowOptions" show="mrk.show" >
-                        <p>{{mrk.id}}</p>
+            <ui-gmap-markers
+                    models="markers"
+                    idkey="markers.id"
+                    coords="'self'">
+                     <ui-gmap-window options="windowOptions">
+                        <p>"Windows"</p>
                     </ui-gmap-window>
-            </ui-gmap-marker>
+            </ui-gmap-markers>
 
         </ui-gmap-google-map>
 
