@@ -24,6 +24,11 @@ define(
                 template: "Ladowanie map..."
             });
 
+             $scope.show = function(mrk){
+                $log.debug("SHOWING");
+               mrk.show = true;
+            };
+
             logCoordinates = _.bind(logCoordinates, $log);
 
             var listeners = {},
@@ -85,7 +90,7 @@ define(
                             scrollwheel: false
                         },
                         pan    : true,
-                        zoom     : 10,
+                        zoom     : 12,
                         control: {},
                         events : {
                             'click': eventHandlers.click
@@ -110,10 +115,7 @@ define(
                $ionicLoading.hide();
             });
     
-            $scope.show = function(id){
-                $log.debug("show");
-                markers[id].show = true;
-            };
+
         };
 
          function CenterMeMarker(pos) {

@@ -1,6 +1,6 @@
 <ion-view cache-view="false" ng-controller="PlacesController" view-title="{{title}}">
 	<ion-content class="padding calm">
-		<div class="list" ng-repeat="place in places">
+		<div class="list" ng-repeat="place in places" ui-sref='sg.place({id: {{place.id}}})'>
 			<div class="item item-thumbnail-left item-text-wrap">
 				<img ng-src="{{place.url}}">
 				<h2>{{place.name}}</h2>

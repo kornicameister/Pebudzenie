@@ -16,7 +16,10 @@
     "angular-sanitize": "latest",
     "angular-ui-router": "latest",
     "angularjs-geolocation": "latest",
-    "angular-google-maps": "latest"
+    "angular-google-maps": "latest",
+    "jquery": "latest",
+    "jquery-ui": "latest",
+    "underscore": "latest"
   },
   "keywords": [
     "phonegap",

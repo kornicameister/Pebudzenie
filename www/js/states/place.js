@@ -3,27 +3,27 @@
  */
 define(
     [
-        'view/places/placesController',
+        'view/place/placeController',
         'services/activeViewMenu'
     ],
-    function (placesController, placeController) {
+    function (placeController) {
         return [
             {
-                name      : 'sg.places',
+                name      : 'sg.place',
                 definition: {
-                    url  : '/places',
+                    url  : '/place/:id',
                     menus: [
                         {
-                            key  : 'Places',
-                            state: 'sg.places',
+                            key  : 'Place',
+                            state: 'sg.place',
                             class: 'ion-record',
-                            label: 'Miejsca'
+                            label: 'Miejsce'
                         }
                     ],
                     views: {
                         'mainContent': {
-                            controller : placesController,
-                            templateUrl: 'js/view/places/places.html'
+                            controller : placeController,
+                            templateUrl: 'js/view/place/place.html'
                         }
                     }
                 }

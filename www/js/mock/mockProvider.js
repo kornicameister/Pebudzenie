@@ -10,7 +10,12 @@ define(function() {
 
 				latitude : 51.753893,
 				longitude: 19.480884,
-				show:false
+				show:false,
+			imgs: [
+				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
+				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
+				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+			]
 
 		},
 		{
@@ -21,7 +26,12 @@ define(function() {
 
 				latitude : 51.770663,
 				longitude: 19.464108,
-				show:false
+				show:false,
+			imgs: [
+				"http://s9.flog.pl/media/foto/6345697_sobor-sw-aleksandra-newskiego.jpg",
+				"http://s8.flog.pl/media/foto/6773838_sobor-sw-aleksandra-newskiego-w-lodzi-.jpg",
+				"http://static.panoramio.com/photos/original/2105462.jpg"
+			]
 
 		},
 		{
@@ -31,8 +41,12 @@ define(function() {
 			url: "http://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg/240px-Nowa_fontanna_plac_D%C4%85browskiego.jpg",
 				latitude : 51.774222,
 				longitude: 19.469615,
-				show:false
-
+				show:false,
+			imgs: [
+				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
+				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
+				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+			]
 		},
 		{
 			id: 4,
@@ -42,8 +56,12 @@ define(function() {
 
 				latitude : 51.765947,
 				longitude: 19.412271,
-				show:false
-
+				show:false,
+			imgs: [
+				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
+				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
+				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+			]
 		},
 		{
 			id: 5,
@@ -53,8 +71,12 @@ define(function() {
 
 				latitude : 51.746523,
 				longitude: 19.464213,
-				show:false
-
+				show:false,
+			imgs: [
+				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
+				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
+				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+			]
 		},
 		{
 			id: 6,
@@ -64,8 +86,12 @@ define(function() {
 
 				latitude : 51.802173,
 				longitude: 19.480122,
-				show:false
-
+				show:false,
+			imgs: [
+				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
+				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
+				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+			]
 		}
 		]
 

@@ -29,7 +29,7 @@
                     ng-repeat="mrk in markers"
                     idkey="mrk.id"
                     coords="mrk"
-                    ng-click="show(0)">
+                    ng-click="show(mrk)">
                      <ui-gmap-window options="windowOptions" show="mrk.show" >
                         <p>{{mrk.id}}</p>
                     </ui-gmap-window>

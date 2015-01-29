@@ -13,7 +13,13 @@ define(
 				$log.debug("Loading data");
 				$log.debug(mockProvider);
 				$scope.places = mockProvider.places;
-			}
+			};
+
+			$scope.showDetails = function(id){
+				$log.debug(id);
+			};
+
+			
 			loadData();
 		});
 	});
