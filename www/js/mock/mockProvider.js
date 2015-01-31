@@ -5,23 +5,23 @@ define(function() {
 		{
 			id: 1,
 			name: "Księżny Młyn",
-			description: "zespół fabryk włókienniczych (przede wszystkim przędzalni bawełny) i obiektów towarzyszących, budowanych na terenie miasta Łodzi od 1824",
+			description: "Księżny Młyn to zespół fabryk włókienniczych (przede wszystkim przędzalni bawełny) i obiektów towarzyszących, budowanych na terenie miasta Łodzi od 1824",
 			url: "http://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Remiza_Ksiezy_Mlyn_tymienieckiego.jpg/1280px-Remiza_Ksiezy_Mlyn_tymienieckiego.jpg",
 
 				latitude : 51.753893,
 				longitude: 19.480884,
 				show:false,
 			imgs: [
-				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
-				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
-				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+				"http://www.libertas.pl/20110514526-Ksiezy_Mlyn.jpg",
+				"http://upload.wikimedia.org/wikipedia/commons/3/3d/Lodz_Fabryka_Scheiblera_Tymienieckiego_2010-05.jpg",
+				"http://kolumber.pl/upload/photos/0009/3522/94f1bb6433ef0677b7cd410ff7bc147f_big.jpg"
 			]
 
 		},
 		{
 			id: 2,
 			name: "Sobór św. Aleksandra Newskiego",
-			description: " sobór prawosławny, katedra diecezji łódzko-poznańskiej Polskiego Autokefalicznego Kościoła Prawosławnego oraz siedziba miejscowej parafii (w dekanacie Łódź). Mieści się przy ulicy Jana Kilińskiego 54.",
+			description: "Sobór św. Aleksandra Newskiego sobór prawosławny, katedra diecezji łódzko-poznańskiej Polskiego Autokefalicznego Kościoła Prawosławnego oraz siedziba miejscowej parafii (w dekanacie Łódź). Mieści się przy ulicy Jana Kilińskiego 54.",
 			url: "http://upload.wikimedia.org/wikipedia/commons/thumb/0/08/%C5%81od%C5%BA%2C_Jana_Kili%C5%84skiego%2C_chr%C3%A1m_Alexandra_N%C4%9Bvsk%C3%A9ho.JPG/640px-%C5%81od%C5%BA%2C_Jana_Kili%C5%84skiego%2C_chr%C3%A1m_Alexandra_N%C4%9Bvsk%C3%A9ho.JPG",
 
 				latitude : 51.770663,
@@ -58,9 +58,9 @@ define(function() {
 				longitude: 19.412271,
 				show:false,
 			imgs: [
-				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
-				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
-				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+				"http://g-way.pl/files/5513/5428/2815/lunapark10.jpg",
+				"http://d.polskatimes.pl/k/r/1/f4/29/5211df4a8a786_k27.jpg?1400901874",
+				"http://static.panoramio.com/photos/large/2830754.jpg"
 			]
 		},
 		{
@@ -73,24 +73,24 @@ define(function() {
 				longitude: 19.464213,
 				show:false,
 			imgs: [
-				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
-				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
-				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+				"http://www.muzeumwlokiennictwa.pl/images/banner-skansen.jpg",
+				"http://fotoforum.gazeta.pl/photo/3/tb/mc/ylla/WWtl5KFRibWIrnESLB.jpg",
+				"http://static.panoramio.com/photos/large/14733594.jpg"
 			]
 		},
 		{
 			id: 6,
 			name: "Radagast",
-			description: "Radegast – właściwie „stacja Marysin”[1], nieczynny już punkt przeładunkowy na wschodniej obwodnicy kolejowej Łodzi (trasa Łódź-Widzew – Zgierz). W okresie II wojny światowej łódzki Umschlagplatz.",
+			description: "Radegast – właściwie „stacja Marysin”, nieczynny już punkt przeładunkowy na wschodniej obwodnicy kolejowej Łodzi (trasa Łódź-Widzew – Zgierz). W okresie II wojny światowej łódzki Umschlagplatz.",
 			url: "http://m80.targeo.pl/i/cache/wikipic/sta/Stacja_Radegast_panorama__C5_81_C3_B3d_C5_BA_jpg-seo.jpg",
 
 				latitude : 51.802173,
 				longitude: 19.480122,
 				show:false,
 			imgs: [
-				"http://upload.wikimedia.org/wikipedia/commons/9/92/Nowa_fontanna_plac_D%C4%85browskiego.jpg",
-				"http://lodz.fotopolska.eu/foto/180/180573.jpg",
-				"http://bi.gazeta.pl/im/5/9523/z9523595X,Lodzkie-Spotkania-Baletowe---Spotkania-w-dwoch-aktach-.jpg"
+				"http://mw2.google.com/mw-panoramio/photos/medium/8482989.jpg",
+				"http://serwisy.ioh.pl/holocaust/img/Lodz/glw06.jpg",
+				"http://images.photo.bikestats.eu/zdjecie,600,55516,20090603,stacja-radegast.jpg"
 			]
 		}
 		]

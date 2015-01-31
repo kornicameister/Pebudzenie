@@ -2,7 +2,7 @@
 <ion-content class="padding calm">
 <div class="list card">
 
-	<div class="item item-avatar">
+	<div class="item item-thumbnail-left">
 		<img src="{{place.url}}">
 		<h2>{{place.name}}</h2>
 		<p>November 05, 1955</p>
@@ -11,20 +11,20 @@
 	<div class="item item-body">
 		<!-- <img id="smallimage" src="{{place.url}}"> -->
 		<ion-slide-box>
-			<ion-slide ng-repeat="image in place.imgs" class="item item-avatar">
-				<div >
-					<img class="item item-avatar" src="{{image}}">
-				</div>
+			<ion-slide ng-repeat="image in place.imgs" >
+			<div class="slider-slides">
+				<img src="{{image}}"  height="50%" width="100%">
+			</div>
 			</ion-slide>
 		</ion-slide-box>
-<p>
-	{{place.description}}
-</p>
-<p>
-	<a href="#" class="subdued">1 Like</a>
-	<a href="#" class="subdued">5 Comments</a>
-</p>
-</div>
+		<p>
+			{{place.description}}
+		</p>
+		<p>
+			<a href="#" class="subdued">1 Like</a>
+			<a href="#" class="subdued">5 Comments</a>
+		</p>
+	</div>
 
 <div class="item tabs tabs-secondary tabs-icon-left">
 	<a class="tab-item" href="#">
