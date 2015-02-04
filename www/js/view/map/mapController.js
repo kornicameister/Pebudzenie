@@ -4,14 +4,20 @@ define(
         'lodash',
         // angular injections
         'services/map/markers',
+        'services/map/proximity',
+        'providers/mapMarkersProximity.provider',
         'view/map/controls/centerMe'    // control for the centerMe action
     ],
-    function mapController(MAP_EVENTS) {
+    function mapController(MAP_EVENTS, _) {
 
         return function ($scope,
                          $log,
                          $ionicLoading,
                          $ionicPopup,
+                         $interval,
+                         $timeout,
+                         $mapMarkerProximity,
+                         mapProximityService,
                          uiGmapGoogleMapApi,
                          mapMarkersService,     // mapMarkers services
                          markers,               // from resolve param in the state definition
@@ -24,9 +30,9 @@ define(
                 template: "Ladowanie map..."
             });
 
-             $scope.show = function(mrk){
+            $scope.show = function (mrk) {
                 $log.debug("SHOWING");
-               mrk.show = true;
+                mrk.show = true;
             };
 
             logCoordinates = _.bind(logCoordinates, $log);
@@ -53,7 +59,7 @@ define(
 
                 $scope.map.control.refresh(pos);
                 $scope.myPosMarker = pos;
-     
+
 
                 event.stopPropagation();
             };
@@ -67,7 +73,8 @@ define(
              * @type {Array}
              */
             $scope.markers = markers || [];
-            $log.debug("All available markers: " +markers.length);
+            $scope.markersControl = {};
+            $log.debug("All available markers: " + markers.length);
             // set up listeners for map controls
             _.forIn(listeners, function (listener, key) {
                 $scope.$on(key, listener);
@@ -112,13 +119,39 @@ define(
                     return map;
                 })();
 
-               $ionicLoading.hide();
+                $interval(function () {
+                    var gMarkers = $scope.markersControl.getChildMarkers();
+                    try {
+                        mapProximityService
+                            .proximate(geolocation.getLocation(), $scope.markers || [])
+                            .then(function (nearbyMarkers) {
+                                nearbyMarkers = nearbyMarkers || [];
+                                if (!nearbyMarkers.length) {
+                                    return;
+                                }
+
+                                _.forEachRight(nearbyMarkers, function (nm) {
+                                    if (nm) {
+                                        nm = gMarkers[nm.id];
+                                        nm.setAnimation(google.maps.Animation.BOUNCE);
+                                        $timeout(function () {
+                                            nm.setAnimation(null);
+                                        }, $mapMarkerProximity.getInterval() / 2);
+                                    }
+                                });
+                            })
+                    } catch (err) {
+                        $log.error(err);
+                    }
+                }, $mapMarkerProximity.getInterval());
+
+                $ionicLoading.hide();
             });
-    
+
 
         };
 
-         function CenterMeMarker(pos) {
+        function CenterMeMarker(pos) {
             this.coords = pos;
         }
 
