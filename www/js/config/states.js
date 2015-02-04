@@ -6,6 +6,8 @@ define(
         'states/home',
         'states/map',
         'states/about',
+        'states/places',
+         'states/place',
         'states/crud/new',
         'states/crud/new/newPlaceState'
         // states
