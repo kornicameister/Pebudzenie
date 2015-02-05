@@ -24,15 +24,13 @@ define(
             activeViewMenu.configure();
         });
 
-        document.addEventListener("deviceready", function () {
-            setTimeout(function () {
-                console.log('init.js >> bootstrapping angular application name=' + app['name']);
-                window.name = 'NG_DEFER_BOOTSTRAP';
-                angular.bootstrap(document, [
-                    app['name']
-                ]);
-            }, 10);
-        }, false);
+        setTimeout(function () {
+            console.log('init.js >> bootstrapping angular application name=' + app['name']);
+            window.name = 'NG_DEFER_BOOTSTRAP';
+            angular.bootstrap(document, [
+                app['name']
+            ]);
+        }, 10);
 
     }
 );

@@ -18,12 +18,16 @@ define(
                          $timeout,
                          $mapMarkerProximity,
                          mapProximityService,
+                         geolocation,
                          uiGmapGoogleMapApi,
                          mapMarkersService,     // mapMarkers services
                          markers,               // from resolve param in the state definition
                          currentPosition        // from resolve param in the state definition
         ) {
             $log.debug('mapController >> ' + this);
+
+            var self = this;
+
             $scope.title = 'Mapa';
 
             $ionicLoading.show({
@@ -54,12 +58,27 @@ define(
 
                 pos = {
                     latitude : pos.coords.latitude,
-                    longitude: pos.coords.longitude
+                    longitude: pos.coords.longitude,
+                    circle   : {
+                        center: {
+                            latitude : pos.coords.latitude,
+                            longitude: pos.coords.longitude
+                        },
+                        radius: $mapMarkerProximity.getRadius(),
+                        stroke: {
+                            color  : '#08B21F',
+                            weight : 2,
+                            opacity: 1
+                        },
+                        fill  : {
+                            color  : '#08B21F',
+                            opacity: 0.5
+                        }
+                    }
                 };
 
                 $scope.map.control.refresh(pos);
                 $scope.myPosMarker = pos;
-
 
                 event.stopPropagation();
             };
@@ -119,8 +138,8 @@ define(
                     return map;
                 })();
 
-                $interval(function () {
-                    var gMarkers = $scope.markersControl.getChildMarkers();
+                self.checkProximitInterval = $interval(function () {
+                    var gMarkers = $scope.markersControl.getGMarkers();
                     try {
                         mapProximityService
                             .proximate(geolocation.getLocation(), $scope.markers || [])
@@ -132,10 +151,12 @@ define(
 
                                 _.forEachRight(nearbyMarkers, function (nm) {
                                     if (nm) {
-                                        nm = gMarkers[nm.id];
+                                        nm = _.findWhere(gMarkers, {key: nm.id});
                                         nm.setAnimation(google.maps.Animation.BOUNCE);
                                         $timeout(function () {
-                                            nm.setAnimation(null);
+                                            if (nm) {
+                                                nm.setAnimation(null);
+                                            }
                                         }, $mapMarkerProximity.getInterval() / 2);
                                     }
                                 });
@@ -148,18 +169,9 @@ define(
                 $ionicLoading.hide();
             });
 
-
-        };
-
-        function CenterMeMarker(pos) {
-            this.coords = pos;
-        }
-
-        CenterMeMarker.prototype = {
-            id     : 'MY_POS',
-            options: {
-                optimized: true
-            }
+            $scope.$on('destroy', function () {
+                self.checkProximitInterval.cancel();
+            })
         };
 
         /**

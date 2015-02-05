@@ -29,15 +29,17 @@ define(
 
             return service;
 
-            function isNearbyMarker(markerCords, posCords, radius) {
-                var d = Math.sqrt(
-                    (markerCords.latitude - posCords.latitude) * (markerCords.latitude - posCords.latitude) +
-                    (markerCords.longitude - posCords.longitude) * (markerCords.longitude - posCords.longitude)
-                );
+            function toLatLng(cords) {
+                return new google.maps.LatLng(cords.latitude, cords.longitude);
+            }
 
-                $log.debug('ED=' + d + ', radius=' + radius + ' => ' + radius <= d);
+            function isNearbyMarker(markerCords, posCords, radius, unit) {
 
-                return radius <= d;
+                markerCords = toLatLng(markerCords);
+                posCords = toLatLng(posCords);
+
+                var d = google.maps.geometry.spherical.computeDistanceBetween(markerCords, posCords);
+                return radius >= d;
             }
 
             function proximate(posPromise, markers) {
@@ -50,24 +52,32 @@ define(
 
             function getNearbyPoints(pos, markers) {
                 var defered = $q.defer(),
-                    radius;
+                    radius,
+                    unit;
                 if (!pos) {
                     $log.warn('Cannot calculate position, pos is undefined');
                     defered.reject('Cannot calculate position, pos is undefined');
                 }
 
                 radius = $mapMarkerProximity.getRadius();
-                markers = _.clone(markers, false, function (marker) {
-                    return {
+                unit = $mapMarkerProximity.getUnit();
+
+                markers = _.transform(markers, function (result, marker) {
+                    return result.push({
                         id       : marker.id,
                         latitude : marker.latitude,
                         longitude: marker.longitude
-                    }
+                    });
                 });
 
                 $timeout(function () {
                     defered.resolve(_.filter(markers, function (marker) {
-                        return isNearbyMarker(_.pick(marker, ['latitude', 'longitude']), pos, radius);
+                        return isNearbyMarker(
+                            _.pick(marker, ['latitude', 'longitude']),
+                            _.pick(pos.coords, ['latitude', 'longitude']),
+                            radius,
+                            unit
+                        );
                     }));
                 }, 100);
 

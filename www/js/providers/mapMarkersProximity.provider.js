@@ -9,9 +9,17 @@ define(
         app.provider('$mapMarkerProximity', function () {
             // private
             var self = this,
+                ProximityCalc = {
+                    km: function (val) {
+                        return val * 1000;
+                    },
+                    m : function (val) {
+                        return val;
+                    }
+                },
                 config = {
-                    interval: 5000,
-                    radius  : 5,
+                    interval: 10000,
+                    radius  : 3,
                     unit    : 'km'
                 };
 
@@ -22,7 +30,10 @@ define(
             self.$get = function () {
                 var service = {};
 
-                service.getRadius = new ProximityCalc()[config.unit];
+                service.getRadius = function () {
+                    return ProximityCalc[config.unit](config.radius);
+                };
+                service.getUnit = _.constant(config.unit);
                 service.getInterval = _.constant(config.interval);
 
                 return service;
@@ -31,15 +42,6 @@ define(
             function configureProvider(conf) {
                 config = _.defaults(conf, config);
                 return self;
-            }
-
-            function ProximityCalc() {
-                this.km = function (val) {
-                    return val * 1000;
-                };
-                this.m = function (val) {
-                    return val;
-                }
             }
         })
     }
