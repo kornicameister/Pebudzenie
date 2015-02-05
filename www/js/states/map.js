@@ -1,13 +1,11 @@
-/**
- * Created by trebskit on 2014-12-11.
- */
 define(
     [
         'view/map/mapController',
+        'view/map/actionSheet.controller',
         // angular injections
         'angularGeolocation',
         'services/map/markers',
-        '../services/activeViewMenu'    // activeView settings service
+        'services/activeViewMenu'    // activeView settings service
     ],
     function (mapController) {
         return {

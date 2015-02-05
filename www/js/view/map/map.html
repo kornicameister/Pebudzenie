@@ -41,6 +41,12 @@
 
         </ui-gmap-google-map>
 
+        <div id="daMapContent" class="bar bar-footer" ng-controller="MapActionSheetController as asCtrl">
+            <div class="title">
+                <button class="button button-positive" ng-click="asCtrl.showActionSheet()">Mapa</button>
+            </div>
+        </div>
+
     </ion-content>
 
     <!-- gMap controls' templates -->

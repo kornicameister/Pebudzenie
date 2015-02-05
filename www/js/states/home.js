@@ -1,6 +1,3 @@
-/**
- * Created by trebskit on 2014-12-11.
- */
 define(
     [
         'view/home/homeController',
